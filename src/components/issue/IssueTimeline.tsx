@@ -10,6 +10,7 @@ import {
   Star,
   UserCheck
 } from 'lucide-react';
+import { motion } from 'motion/react';
 import { TimelineEvent, IssueStatus } from '../../types';
 
 interface IssueTimelineProps {
@@ -74,16 +75,20 @@ export const IssueTimeline: React.FC<IssueTimelineProps> = ({
         {/* Mobile Left Vertical Spine Line */}
         <div className="md:hidden absolute left-4 top-4 bottom-4 w-1 bg-slate-200 rounded-full" />
 
-        <div className="space-y-8">
+        <div className="space-y-8 overflow-hidden py-2">
           {timeline.map((event, index) => {
             const isCompleted = event.isCompleted;
             const isCurrent = event.isCurrent;
             const isEscalation = event.stage === 'Overdue Escalation';
-            const isEven = index % 2 === 0; // Even index = Left side on desktop, Odd = Right side
+            const isEven = index % 2 === 0; // Even = Left side on desktop, Odd = Right side
 
             return (
-              <div
+              <motion.div
                 key={event.id || index}
+                initial={{ opacity: 0, x: isEven ? -40 : 40, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }}
                 className="relative flex flex-col md:flex-row items-center"
               >
                 
@@ -102,14 +107,14 @@ export const IssueTimeline: React.FC<IssueTimelineProps> = ({
                   {getStageIcon(event.stage, isCompleted, isCurrent)}
                 </div>
 
-                {/* Alternating Left Card (Desktop) */}
+                {/* Alternating Left / Right Card */}
                 <div
                   className={`pl-12 md:pl-0 w-full md:w-[calc(50%-2.5rem)] ${
                     isEven ? 'md:mr-auto md:text-right' : 'md:ml-auto md:text-left'
                   }`}
                 >
                   <div
-                    className={`p-5 rounded-2xl border transition-all shadow-xs hover:shadow-md text-left ${
+                    className={`p-5 rounded-2xl border transition-all shadow-xs hover:shadow-md text-left transform hover:-translate-y-0.5 ${
                       isEscalation
                         ? 'bg-red-50/90 border-red-300'
                         : isCurrent
@@ -151,13 +156,19 @@ export const IssueTimeline: React.FC<IssueTimelineProps> = ({
                   </div>
                 </div>
 
-              </div>
+              </motion.div>
             );
           })}
 
           {/* User 5-star Rating Verification (If Resolved) */}
           {userRating && (
-            <div className="relative flex flex-col md:flex-row items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="relative flex flex-col md:flex-row items-center"
+            >
               <div className="absolute left-4 md:left-1/2 top-0 -translate-x-1/2 z-20 w-9 h-9 rounded-full flex items-center justify-center border-2 bg-amber-100 border-amber-500 text-amber-600 shadow-md">
                 <Star className="w-4 h-4 fill-amber-500 text-amber-600" />
               </div>
@@ -185,7 +196,7 @@ export const IssueTimeline: React.FC<IssueTimelineProps> = ({
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
 
         </div>
