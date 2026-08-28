@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ShieldCheck, HardHat, CheckCircle2, AlertTriangle, Clock, ChevronRight, MapPin } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 
 interface RepairStage {
@@ -20,7 +21,7 @@ const REPAIR_STAGES: RepairStage[] = [
     title: '1. Pothole Geo-Tagged & Reported',
     stageBadge: 'Grievance Registered',
     location: 'MG Road Metro Station Corridor, Bengaluru',
-    slaTime: '72h Countdown Started',
+    slaTime: 'Repair Countdown Active',
     image: '/demo-images/pothole-1.jpg',
     description: 'Dangerous 4-inch deep asphalt depression logged by citizen with automatic GPS location pin.',
     officer: 'Er. R. K. Sharma (Junior Engineer, BBMP Ward 174)',
@@ -31,7 +32,7 @@ const REPAIR_STAGES: RepairStage[] = [
     title: '2. Municipal Road Repair In Progress',
     stageBadge: 'Asphalt Compaction Active',
     location: 'MG Road Civil Work Site, Ward 174',
-    slaTime: '24h Work Order In Execution',
+    slaTime: 'Work Order In Execution',
     image: '/demo-images/road-repair-work.jpg',
     description: 'Hot mix asphalt dispatched to site. Heavy compaction roller leveling sub-base layer.',
     officer: 'Er. R. K. Sharma (Site Inspection Logged)',
@@ -42,7 +43,7 @@ const REPAIR_STAGES: RepairStage[] = [
     title: '3. Verified Smooth Resurfaced Road',
     stageBadge: 'Citizen Verified Fixed',
     location: 'MG Road Metro Station Corridor, Bengaluru',
-    slaTime: 'Completed in 28 Hours',
+    slaTime: 'Completed & Signed Off',
     image: '/demo-images/repair-proof.jpg',
     description: 'Freshly resurfaced asphalt patch completed and signed off by ward engineer & local residents.',
     officer: 'Verified & Closed by Executive Engineer',
@@ -58,37 +59,53 @@ export const RoadRepairShowcase: React.FC = () => {
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4 select-none">
       
-      {/* Mode Switcher Pills */}
-      <div className="flex items-center justify-between bg-white/10 backdrop-blur-md p-1.5 rounded-2xl border border-white/20 text-xs">
-        <div className="flex items-center gap-1">
+      {/* Animated Tubelight Sliding Mode Switcher */}
+      <div className="flex items-center justify-between bg-[#07172B]/90 border border-slate-700/80 rounded-full p-1.5 shadow-2xl relative">
+        <div className="flex items-center gap-1 w-full">
+          
+          {/* Tab 1: Compare Slider */}
           <button
             type="button"
             onClick={() => setViewMode('compare')}
-            className={`px-3.5 py-1.5 rounded-xl font-extrabold transition-all cursor-pointer ${
-              viewMode === 'compare'
-                ? 'bg-[#F97316] text-white shadow-md'
-                : 'text-slate-200 hover:text-white'
+            className={`relative flex-1 py-2 rounded-full text-xs font-extrabold transition-colors cursor-pointer text-center ${
+              viewMode === 'compare' ? 'text-white' : 'text-slate-300 hover:text-white'
             }`}
           >
-            Before & After Interactive Slider
+            {viewMode === 'compare' && (
+              <motion.div
+                layoutId="showcase-active-tab"
+                className="absolute inset-0 bg-[#123C69] rounded-full border border-white/20 shadow-md"
+                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              >
+                {/* Tubelight Top Lamp Glow */}
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#F97316] rounded-full shadow-[0_-2px_10px_rgba(249,115,22,0.9)]" />
+              </motion.div>
+            )}
+            <span className="relative z-10">Before & After Interactive Slider</span>
           </button>
+
+          {/* Tab 2: 3-Stage Proof */}
           <button
             type="button"
             onClick={() => setViewMode('stages')}
-            className={`px-3.5 py-1.5 rounded-xl font-extrabold transition-all cursor-pointer ${
-              viewMode === 'stages'
-                ? 'bg-[#F97316] text-white shadow-md'
-                : 'text-slate-200 hover:text-white'
+            className={`relative flex-1 py-2 rounded-full text-xs font-extrabold transition-colors cursor-pointer text-center ${
+              viewMode === 'stages' ? 'text-white' : 'text-slate-300 hover:text-white'
             }`}
           >
-            3-Stage Live Repair Proof
+            {viewMode === 'stages' && (
+              <motion.div
+                layoutId="showcase-active-tab"
+                className="absolute inset-0 bg-[#123C69] rounded-full border border-white/20 shadow-md"
+                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              >
+                {/* Tubelight Top Lamp Glow */}
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-8 h-1 bg-[#F97316] rounded-full shadow-[0_-2px_10px_rgba(249,115,22,0.9)]" />
+              </motion.div>
+            )}
+            <span className="relative z-10">3-Stage Live Repair Proof</span>
           </button>
-        </div>
 
-        <span className="hidden sm:flex items-center gap-1 text-[11px] font-bold text-emerald-400 px-2 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-          <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Statutory 72h SLA</span>
-        </span>
+        </div>
       </div>
 
       {/* VIEW MODE 1: Interactive Before & After Slider */}

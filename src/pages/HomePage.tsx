@@ -89,7 +89,7 @@ export const HomePage: React.FC = () => {
                 <TypingText
                   words={[
                     'Fix Roads. Hold Engineers Accountable.',
-                    'Track 72-Hour Statutory Repair SLAs.',
+                    'Track Live Municipal Repair Progress.',
                     'Generate Legal RTI & CMO Escalations.',
                     'Citizen Verification & Quality Sign-Off.',
                   ]}
