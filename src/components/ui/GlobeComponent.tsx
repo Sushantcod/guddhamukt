@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Clock, MapPin, ChevronRight, ShieldCheck } from 'lucide-react';
+import { Sparkles, Clock, MapPin, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface Pin {
@@ -10,13 +10,15 @@ interface Pin {
   sla: string;
   top: string;
   left: string;
+  x: number;
+  y: number;
 }
 
 const GLOBAL_REPORT_PINS: Pin[] = [
-  { id: '1', label: 'Deep Pothole & Broken Asphalt', location: 'MG Road Metro, Bengaluru', status: 'Repair In Progress', sla: '42h remaining', top: '48%', left: '68%' },
-  { id: '2', label: 'Unfilled Utility Trench', location: 'Koramangala 80ft Road, Bengaluru', status: 'Reported', sla: '68h remaining', top: '52%', left: '72%' },
-  { id: '3', label: 'PMGSY Village Road Erosion', location: 'Rampur Gram Panchayat, UP', status: 'Repair In Progress', sla: '18h remaining', top: '40%', left: '65%' },
-  { id: '4', label: 'Sunken Manhole Cover Hazard', location: 'Indiranagar 100ft Road, Bengaluru', status: 'Resolved', sla: 'Fixed in 24h', top: '44%', left: '75%' },
+  { id: '1', label: 'Deep Pothole & Broken Asphalt', location: 'MG Road Metro, Bengaluru', status: 'Repair In Progress', sla: '42h remaining', top: '48%', left: '68%', x: 68, y: 48 },
+  { id: '2', label: 'Unfilled Utility Trench', location: 'Koramangala 80ft Road, Bengaluru', status: 'Reported', sla: '68h remaining', top: '54%', left: '72%', x: 72, y: 54 },
+  { id: '3', label: 'PMGSY Village Road Erosion', location: 'Rampur Gram Panchayat, UP', status: 'Repair In Progress', sla: '18h remaining', top: '38%', left: '64%', x: 64, y: 38 },
+  { id: '4', label: 'Sunken Manhole Cover Hazard', location: 'Indiranagar 100ft Road, Bengaluru', status: 'Resolved', sla: 'Fixed in 24h', top: '44%', left: '76%', x: 76, y: 44 },
 ];
 
 interface GlobeProps {
@@ -24,7 +26,7 @@ interface GlobeProps {
   size?: number;
 }
 
-export const GlobeComponent: React.FC<GlobeProps> = ({ className = '', size = 420 }) => {
+export const GlobeComponent: React.FC<GlobeProps> = ({ className = '', size = 440 }) => {
   const [activePin, setActivePin] = useState<Pin>(GLOBAL_REPORT_PINS[0]);
 
   return (
@@ -35,15 +37,18 @@ export const GlobeComponent: React.FC<GlobeProps> = ({ className = '', size = 42
             from { background-position: 0% center; }
             to { background-position: 200% center; }
           }
+          @keyframes dashGlow {
+            to { stroke-dashoffset: -20; }
+          }
         `}
       </style>
 
-      {/* Realistic Rotating 3D Earth Sphere Container */}
+      {/* Realistic 3D Globe Studio Container */}
       <div className="relative flex items-center justify-center overflow-visible">
         
         {/* Main 3D Earth Texture Sphere */}
         <div
-          className="relative rounded-full overflow-hidden shadow-[0_0_80px_rgba(249,115,22,0.25),inset_-10px_-10px_50px_rgba(0,0,0,0.85)] transition-all duration-1000 border border-white/20"
+          className="relative rounded-full overflow-hidden shadow-[0_0_90px_rgba(249,115,22,0.3),inset_-12px_-12px_60px_rgba(0,0,0,0.9)] transition-all duration-1000 border border-white/20"
           style={{
             width: `${size}px`,
             height: `${size}px`,
@@ -51,7 +56,7 @@ export const GlobeComponent: React.FC<GlobeProps> = ({ className = '', size = 42
             backgroundSize: "200% 100%",
             backgroundRepeat: "repeat-x",
             animation: "earthRotate 220s linear infinite",
-            filter: "brightness(1.15) contrast(1.15) saturate(1.25)",
+            filter: "brightness(1.18) contrast(1.15) saturate(1.25)",
             transform: "translate3d(0,0,0)",
             WebkitBackfaceVisibility: 'hidden',
           }}
@@ -60,9 +65,36 @@ export const GlobeComponent: React.FC<GlobeProps> = ({ className = '', size = 42
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_35%,transparent_0%,rgba(0,0,0,0.35)_60%,rgba(0,0,0,0.88)_100%)] pointer-events-none" />
           
           {/* Specular Light Highlight */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.18)_0%,transparent_45%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.2)_0%,transparent_45%)] pointer-events-none" />
 
-          {/* Interactive Pothole Pins over Earth Surface */}
+          {/* SVG Arc Lines Connecting Pothole Locations */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 100 100">
+            {/* Arc from Rampur (64,38) to Bengaluru (68,48) */}
+            <path
+              d="M 64 38 Q 62 42 68 48"
+              fill="none"
+              stroke="rgba(255, 255, 255, 0.75)"
+              strokeWidth="0.8"
+              strokeDasharray="2 1"
+              style={{ animation: 'dashGlow 3s linear infinite' }}
+            />
+            {/* Arc from Bengaluru (68,48) to Indiranagar (76,44) */}
+            <path
+              d="M 68 48 Q 72 38 76 44"
+              fill="none"
+              stroke="rgba(255, 255, 255, 0.85)"
+              strokeWidth="0.8"
+            />
+            {/* Arc from Koramangala (72,54) to Indiranagar (76,44) */}
+            <path
+              d="M 72 54 Q 78 50 76 44"
+              fill="none"
+              stroke="rgba(249, 115, 22, 0.8)"
+              strokeWidth="0.8"
+            />
+          </svg>
+
+          {/* Glowing White Pin Markers over Earth Surface */}
           {GLOBAL_REPORT_PINS.map((pin) => {
             const isActive = activePin.id === pin.id;
             return (
@@ -74,16 +106,16 @@ export const GlobeComponent: React.FC<GlobeProps> = ({ className = '', size = 42
                 className="absolute -translate-x-1/2 -translate-y-1/2 z-20 group cursor-pointer"
                 title={`${pin.label} (${pin.location})`}
               >
-                <span className="relative flex h-5 w-5 items-center justify-center">
+                <span className="relative flex h-6 w-6 items-center justify-center">
                   <span
-                    className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-                      pin.status === 'Resolved' ? 'bg-emerald-400' : 'bg-orange-400'
+                    className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-80 ${
+                      pin.status === 'Resolved' ? 'bg-emerald-400' : 'bg-white'
                     }`}
                   />
                   <span
-                    className={`relative inline-flex rounded-full h-3.5 w-3.5 border-2 border-white shadow-md ${
-                      pin.status === 'Resolved' ? 'bg-emerald-500' : 'bg-[#F97316]'
-                    } ${isActive ? 'scale-125 ring-2 ring-orange-300' : ''}`}
+                    className={`relative inline-flex rounded-full h-3.5 w-3.5 border-2 border-slate-900 shadow-lg ${
+                      isActive ? 'bg-white scale-125 ring-4 ring-orange-400' : 'bg-white'
+                    }`}
                   />
                 </span>
               </button>
@@ -91,7 +123,7 @@ export const GlobeComponent: React.FC<GlobeProps> = ({ className = '', size = 42
           })}
         </div>
 
-        {/* High-Quality Atmosphere Outer Rings */}
+        {/* Atmosphere Outer Glow Rings */}
         <div 
           className="absolute inset-0 rounded-full bg-orange-500/15 blur-[50px] pointer-events-none scale-110 opacity-70"
           style={{ width: `${size}px`, height: `${size}px` }}
@@ -101,8 +133,13 @@ export const GlobeComponent: React.FC<GlobeProps> = ({ className = '', size = 42
           style={{ width: `${size}px`, height: `${size}px` }}
         />
 
+        {/* Globe Studio Pill Badge (Top Left) */}
+        <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1 rounded-xl shadow-xl z-30">
+          <span className="text-white font-extrabold text-[11px] tracking-wide">Globe Studio</span>
+        </div>
+
         {/* Orbiting Floating Badge 1: Top Right */}
-        <div className="absolute -top-2 -right-4 sm:right-2 bg-[#0F294A]/95 backdrop-blur-md border border-orange-500/40 p-3 rounded-2xl shadow-2xl max-w-[210px] text-left transform hover:scale-105 transition-transform z-30">
+        <div className="absolute top-2 -right-4 sm:right-2 bg-[#0F294A]/95 backdrop-blur-md border border-orange-500/40 p-3 rounded-2xl shadow-2xl max-w-[210px] text-left transform hover:scale-105 transition-transform z-30">
           <div className="flex items-center gap-1.5 text-[#F97316] font-extrabold text-[11px]">
             <Sparkles className="w-3.5 h-3.5 text-orange-400" />
             <span>GADDHAMUKT</span>
