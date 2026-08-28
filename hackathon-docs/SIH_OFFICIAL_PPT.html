@@ -20,7 +20,7 @@
       display: none;
       height: 100vh;
       width: 100vw;
-      padding: 3rem 5rem;
+      padding: 2.5rem 4rem;
       box-sizing: border-box;
     }
     .slide.active {
@@ -79,9 +79,9 @@
     </div>
   </div>
 
-  <!-- ================= SLIDE 2: PROPOSED SOLUTION (POINT-BY-POINT) ================= -->
+  <!-- ================= SLIDE 2: PROPOSED SOLUTION (WITH APP MOCKUP IMAGE) ================= -->
   <div class="slide" id="slide-2">
-    <div class="max-w-6xl mx-auto space-y-6 text-left w-full">
+    <div class="max-w-6xl mx-auto space-y-5 text-left w-full">
       
       <div class="flex items-center justify-between border-b border-slate-700/80 pb-3">
         <span class="text-xs font-black text-orange-400 uppercase tracking-widest">SLIDE 2 OF 6 — PROPOSED SOLUTION</span>
@@ -90,58 +90,69 @@
 
       <h2 class="text-3xl sm:text-4xl font-black text-white">Core Solution Pillars (Point-by-Point)</h2>
 
-      <div class="grid grid-cols-2 gap-5 pt-2">
+      <div class="grid grid-cols-12 gap-6 items-center pt-1">
         
-        {/* Point 1 */}
-        <div class="p-5 bg-white/5 border border-white/10 rounded-3xl space-y-2">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-black text-xs border border-orange-500/40">01</div>
-            <h3 class="text-base font-black text-white">Photo Geo-Tagging & Spatial Deduplication</h3>
+        {/* Left Column: 4 Points */}
+        <div class="col-span-7 space-y-3">
+          
+          {/* Point 1 */}
+          <div class="p-4 bg-white/5 border border-white/10 rounded-2xl space-y-1">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center font-black text-xs border border-orange-500/40">01</div>
+              <h3 class="text-sm font-black text-white">Photo Geo-Tagging & Spatial Deduplication</h3>
+            </div>
+            <p class="text-xs text-slate-300 font-medium leading-relaxed pl-8">
+              GPS photo pin with reverse geocoding. Haversine 50m algorithm merges duplicates.
+            </p>
           </div>
-          <ul class="space-y-1.5 text-xs text-slate-300 font-medium list-disc pl-5 leading-relaxed">
-            <li>Citizens capture photos with automatic GPS location pin & reverse geocoding.</li>
-            <li>Haversine distance algorithm detects duplicate complaints within 50m radius and merges them.</li>
-            <li>Increments Citizen Confirmation Count without clogging municipal queues.</li>
-          </ul>
+
+          {/* Point 2 */}
+          <div class="p-4 bg-white/5 border border-white/10 rounded-2xl space-y-1">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-black text-xs border border-emerald-500/40">02</div>
+              <h3 class="text-sm font-black text-white">72-Hour Statutory SLA Engine</h3>
+            </div>
+            <p class="text-xs text-slate-300 font-medium leading-relaxed pl-8">
+              Countdown based on severity (24h/48h/72h). Enforces Municipal Gazette resolution deadlines.
+            </p>
+          </div>
+
+          {/* Point 3 */}
+          <div class="p-4 bg-white/5 border border-white/10 rounded-2xl space-y-1">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-black text-xs border border-blue-500/40">03</div>
+              <h3 class="text-sm font-black text-white">Before/After Drag Repair Proof Slider</h3>
+            </div>
+            <p class="text-xs text-slate-300 font-medium leading-relaxed pl-8">
+              Dual-layer comparison slider showing pothole vs compaction roller resurfacing.
+            </p>
+          </div>
+
+          {/* Point 4 */}
+          <div class="p-4 bg-white/5 border border-white/10 rounded-2xl space-y-1">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-black text-xs border border-purple-500/40">04</div>
+              <h3 class="text-sm font-black text-white">1-Click RTI & CMO Legal PDF Dossier</h3>
+            </div>
+            <p class="text-xs text-slate-300 font-medium leading-relaxed pl-8">
+              Generates legal PDF petition for filing with RTI and Chief Minister's Office.
+            </p>
+          </div>
+
         </div>
 
-        {/* Point 2 */}
-        <div class="p-5 bg-white/5 border border-white/10 rounded-3xl space-y-2">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-black text-xs border border-emerald-500/40">02</div>
-            <h3 class="text-base font-black text-white">72-Hour Statutory SLA Engine</h3>
+        {/* Right Column: AI Generated App Showcase Image */}
+        <div class="col-span-5 relative rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-slate-900 group">
+          <img
+            src="/demo-images/sih-app-mockup.jpg"
+            alt="Gaddhamukt Mobile App Mockup"
+            className="w-full h-[320px] object-cover"
+          />
+          <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-3 text-center">
+            <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">
+              Live Mobile Geo-Tagging & 72h SLA App
+            </span>
           </div>
-          <ul class="space-y-1.5 text-xs text-slate-300 font-medium list-disc pl-5 leading-relaxed">
-            <li>Dynamic countdown Based on Hazard Severity: Immediate Danger (24h), High (48h), Medium (72h).</li>
-            <li>Enforces Municipal Gazette & Citizen Charter SLA resolution deadlines.</li>
-            <li>Automated Tier-2 Overdue Escalation when official deadlines elapse.</li>
-          </ul>
-        </div>
-
-        {/* Point 3 */}
-        <div class="p-5 bg-white/5 border border-white/10 rounded-3xl space-y-2">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-black text-xs border border-blue-500/40">03</div>
-            <h3 class="text-base font-black text-white">Interactive Before/After Repair Proof Slider</h3>
-          </div>
-          <ul class="space-y-1.5 text-xs text-slate-300 font-medium list-disc pl-5 leading-relaxed">
-            <li>Dual-layer comparison slider showing raw pothole crater vs resurfaced asphalt patch.</li>
-            <li>3-Stage Repair Proof: Registered → Compaction Roller Work → Citizen 5-Star Sign-Off.</li>
-            <li>Ensures contractors verify physical compaction work before closing dockets.</li>
-          </ul>
-        </div>
-
-        {/* Point 4 */}
-        <div class="p-5 bg-white/5 border border-white/10 rounded-3xl space-y-2">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-black text-xs border border-purple-500/40">04</div>
-            <h3 class="text-base font-black text-white">1-Click RTI & CMO Legal PDF Dossier Generator</h3>
-          </div>
-          <ul class="space-y-1.5 text-xs text-slate-300 font-medium list-disc pl-5 leading-relaxed">
-            <li>Generates client-side PDF petition dossier incorporating GPS maps, photos, and tender IDs.</li>
-            <li>Includes formatted legal clauses under Section 72 Public Disclosure Act for RTI & CMO filing.</li>
-            <li>Empowers citizens with actionable legal leverage against delinquent authorities.</li>
-          </ul>
         </div>
 
       </div>
@@ -149,79 +160,33 @@
     </div>
   </div>
 
-  <!-- ================= SLIDE 3: SYSTEM WORKFLOW & DIAGRAM ================= -->
+  <!-- ================= SLIDE 3: SYSTEM WORKFLOW (WITH ISOMETRIC DIAGRAM IMAGE) ================= -->
   <div class="slide" id="slide-3">
-    <div class="max-w-6xl mx-auto space-y-6 text-left w-full">
+    <div class="max-w-6xl mx-auto space-y-4 text-left w-full">
       
-      <div class="flex items-center justify-between border-b border-slate-700/80 pb-3">
+      <div class="flex items-center justify-between border-b border-slate-700/80 pb-2">
         <span class="text-xs font-black text-orange-400 uppercase tracking-widest">SLIDE 3 OF 6 — WORKFLOW ARCHITECTURE</span>
         <span class="text-xs text-slate-400 font-bold">End-to-End Execution Flow</span>
       </div>
 
-      <h2 class="text-3xl sm:text-4xl font-black text-white">System Workflow Diagram</h2>
+      <h2 class="text-3xl font-black text-white">System Architecture & Workflow Diagram</h2>
 
-      {/* Visual Workflow Cards */}
-      <div class="grid grid-cols-5 gap-3 pt-2">
-        
-        {/* Step 1 */}
-        <div class="p-4 bg-white/5 border border-orange-500/30 rounded-2xl space-y-2 text-center relative">
-          <span class="px-2 py-0.5 rounded bg-orange-500/20 text-orange-400 text-[10px] font-black font-mono-code block">
-            STAGE 1
+      {/* AI Generated Isometric Workflow Diagram Image */}
+      <div class="relative rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-slate-900">
+        <img
+          src="/demo-images/sih-workflow.jpg"
+          alt="SIH System Workflow Diagram"
+          className="w-full h-[300px] object-cover"
+        />
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent p-3 text-center">
+          <span className="text-xs font-black text-orange-400 uppercase tracking-widest">
+            3D Isometric Execution Pipeline: Citizen Geo-Tag → Ward Control Center → Compaction Roller → Verification
           </span>
-          <h4 class="text-xs font-black text-white">Citizen Photo Upload</h4>
-          <p class="text-[11px] text-slate-300 font-medium leading-snug">
-            GPS photo captured. Haversine 50m spatial check prevents duplicates.
-          </p>
         </div>
-
-        {/* Step 2 */}
-        <div class="p-4 bg-white/5 border border-blue-500/30 rounded-2xl space-y-2 text-center">
-          <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] font-black font-mono-code block">
-            STAGE 2
-          </span>
-          <h4 class="text-xs font-black text-white">Ward Auto-Routing</h4>
-          <p class="text-[11px] text-slate-300 font-medium leading-snug">
-            Auto-assigned to Junior Engineer (ULB) or Gram Panchayat Sarpanch.
-          </p>
-        </div>
-
-        {/* Step 3 */}
-        <div class="p-4 bg-white/5 border border-amber-500/30 rounded-2xl space-y-2 text-center">
-          <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-black font-mono-code block">
-            STAGE 3
-          </span>
-          <h4 class="text-xs font-black text-white">72h SLA Countdown</h4>
-          <p class="text-[11px] text-slate-300 font-medium leading-snug">
-            Live SLA target window active. Engineer dispatches asphalt crew.
-          </p>
-        </div>
-
-        {/* Step 4 */}
-        <div class="p-4 bg-white/5 border border-emerald-500/30 rounded-2xl space-y-2 text-center">
-          <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-black font-mono-code block">
-            STAGE 4
-          </span>
-          <h4 class="text-xs font-black text-white">Compaction Repair</h4>
-          <p class="text-[11px] text-slate-300 font-medium leading-snug">
-            Hot-mix asphalt laid. Repair proof uploaded for citizen audit.
-          </p>
-        </div>
-
-        {/* Step 5 */}
-        <div class="p-4 bg-white/5 border border-purple-500/30 rounded-2xl space-y-2 text-center">
-          <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-[10px] font-black font-mono-code block">
-            STAGE 5
-          </span>
-          <h4 class="text-xs font-black text-white">Or RTI / CMO Escalation</h4>
-          <p class="text-[11px] text-slate-300 font-medium leading-snug">
-            If SLA breached, 1-click legal PDF dossier generated for CMO cell.
-          </p>
-        </div>
-
       </div>
 
       {/* Regional Test Corridor Box */}
-      <div class="p-4 bg-[#0F294A] border border-slate-700 rounded-2xl flex items-center justify-between text-xs">
+      <div class="p-3 bg-[#0F294A] border border-slate-700 rounded-2xl flex items-center justify-between text-xs">
         <span class="font-extrabold text-white">📍 Real-World Test Region:</span>
         <span class="text-slate-300 font-medium">Punjab LPU GT Road Corridor (NH-44 Phagwara & Jalandhar) + Bengaluru BBMP Grid</span>
       </div>
