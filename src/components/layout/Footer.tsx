@@ -5,13 +5,13 @@ import {
   MapPin, 
   Phone, 
   Mail, 
-  ExternalLink, 
   Heart, 
   Compass, 
   FileText, 
   BarChart3, 
   ShieldAlert, 
-  PlusCircle 
+  PlusCircle,
+  Building2
 } from 'lucide-react';
 import { Logo } from '../common/Logo';
 
@@ -27,11 +27,12 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-4 space-y-4">
             <Logo size="md" theme="dark" />
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm font-medium">
-              <strong>Gaddhamukt</strong> is India’s open civic road accountability platform. Photo geo-tag dangerous potholes, track municipal engineer repair SLAs, and trigger automated RTI & CMO escalation dossiers.
+              <strong>Gaddhamukt</strong> is India’s open civic road accountability platform. Photo geo-tag dangerous road potholes, track municipal engineer repair SLAs, and trigger automated RTI & CMO escalation dossiers.
             </p>
             <div className="flex items-center gap-3 pt-1">
-              <span className="px-2.5 py-1 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[11px] font-bold">
-                BBMP Urban & Gram Panchayat Grid
+              <span className="px-2.5 py-1 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[11px] font-bold flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5" />
+                <span>LPU Punjab & BBMP Urban Grid</span>
               </span>
             </div>
           </div>
@@ -75,7 +76,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 3: Statutory Authority Info */}
+          {/* Column 3: Statutory Authority Info (LPU Punjab & National Helpdesk) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-black text-white uppercase tracking-wider">
               Statutory Helpdesk
@@ -83,15 +84,15 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-xs text-slate-400">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
-                <span>BBMP Central Office, N.R. Square, Bengaluru - 560002</span>
+                <span>NH-44 GT Road Corridor, LPU Phagwara & Jalandhar Zone, Punjab - 144411</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-orange-400 shrink-0" />
-                <span>Toll Free Helpline: 1533 / 080-22660000</span>
+                <span>Toll Free Helpline: 1800-180-2468 / 1533</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-orange-400 shrink-0" />
-                <span>grievance@gaddhamukt.gov.in</span>
+                <span>lpu.grievance@gaddhamukt.gov.in</span>
               </li>
             </ul>
           </div>
@@ -107,7 +108,7 @@ export const Footer: React.FC = () => {
                 <span>RTI Compliant</span>
               </div>
               <p className="leading-snug text-slate-400">
-                All records published under Public Disclosure Act & Municipal Gazette Section 72.
+                All records published under Public Disclosure Act & Municipal Gazette.
               </p>
             </div>
           </div>
