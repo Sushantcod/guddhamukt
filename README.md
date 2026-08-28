@@ -1,6 +1,16 @@
-# GuddhaMutk (Civic Road Accountability Platform)
+# Gaddhamukt (गड्ढामुक्त) — Civic Road Accountability Platform
 
-A modern civic road-issue reporting and public governance accountability web application for urban cities (e.g., Bengaluru BBMP) and rural villages (e.g., Gram Panchayats / PMGSY).
+A modern civic road-issue reporting and public governance accountability web application for urban cities (e.g., Bengaluru BBMP), rural villages (e.g., Gram Panchayats), and Punjab (LPU GT Road Corridor).
+
+---
+
+### 🏆 Hackathon Documentation & Slide Deck
+All presentation slides, Q&A pitch guides, system architecture diagrams, and UI guides are consolidated in the **[`hackathon-docs/`](file:///Users/sushant/Documents/guddhamukt/hackathon-docs/README.md)** directory:
+- 📊 **[`HACKATHON_PRESENTATION.html`](file:///Users/sushant/Documents/guddhamukt/hackathon-docs/HACKATHON_PRESENTATION.html)** — Interactive Browser Presentation (Arrow Key Navigation)
+- 📜 **[`HACKATHON_SLIDES.md`](file:///Users/sushant/Documents/guddhamukt/hackathon-docs/HACKATHON_SLIDES.md)** — 10-Slide Markdown Deck
+- 🏆 **[`HACKATHON_QA_PITCH.md`](file:///Users/sushant/Documents/guddhamukt/hackathon-docs/HACKATHON_QA_PITCH.md)** — Judges Pitch & Q&A Master Guide
+- 🏗️ **[`SYSTEM_ARCHITECTURE_FLOW.md`](file:///Users/sushant/Documents/guddhamukt/hackathon-docs/SYSTEM_ARCHITECTURE_FLOW.md)** — System Architecture & Data Pipeline
+- 🎨 **[`UI_DESIGN_SYSTEM_GUIDE.md`](file:///Users/sushant/Documents/guddhamukt/hackathon-docs/UI_DESIGN_SYSTEM_GUIDE.md)** — UI Design System & Component Breakdown
 
 ---
 
