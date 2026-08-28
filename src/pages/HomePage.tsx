@@ -85,7 +85,7 @@ export const HomePage: React.FC = () => {
           <div className="lg:col-span-6 space-y-6 text-left z-10">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-['Plus_Jakarta_Sans',sans-serif]">
               Report Potholes. <br />
-              <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 bg-clip-text text-transparent">
+              <span className="text-[#F97316] font-extrabold block min-h-[3rem]">
                 <TypingText
                   words={[
                     'Fix Roads. Hold Engineers Accountable.',

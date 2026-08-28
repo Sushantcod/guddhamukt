@@ -10,8 +10,8 @@ interface TypingTextProps {
 
 export const TypingText: React.FC<TypingTextProps> = ({
   words,
-  typingSpeed = 70,
-  deletingSpeed = 35,
+  typingSpeed = 60,
+  deletingSpeed = 30,
   delayBetween = 2200,
   className = '',
 }) => {
@@ -21,10 +21,9 @@ export const TypingText: React.FC<TypingTextProps> = ({
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    const fullWord = words[currentWordIndex];
+    const fullWord = words[currentWordIndex] || words[0];
 
     if (isDeleting) {
-      // Deleting character by character
       timer = setTimeout(() => {
         setCurrentText((prev) => prev.substring(0, prev.length - 1));
       }, deletingSpeed);
@@ -34,7 +33,6 @@ export const TypingText: React.FC<TypingTextProps> = ({
         setCurrentWordIndex((prev) => (prev + 1) % words.length);
       }
     } else {
-      // Typing character by character
       timer = setTimeout(() => {
         setCurrentText(fullWord.substring(0, currentText.length + 1));
       }, typingSpeed);
@@ -50,8 +48,8 @@ export const TypingText: React.FC<TypingTextProps> = ({
   }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, delayBetween]);
 
   return (
-    <span className={`inline-flex items-center ${className}`}>
-      <span>{currentText}</span>
+    <span className={`inline-flex items-center text-[#F97316] ${className}`}>
+      <span className="text-[#F97316] font-black">{currentText}</span>
       <span className="ml-1 animate-pulse font-extrabold text-[#F97316]">|</span>
     </span>
   );
