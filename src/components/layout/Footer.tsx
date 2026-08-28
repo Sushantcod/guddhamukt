@@ -13,6 +13,7 @@ import {
   PlusCircle,
   Building2
 } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Logo } from '../common/Logo';
 
 export const Footer: React.FC = () => {
@@ -118,9 +119,16 @@ export const Footer: React.FC = () => {
         {/* Bottom Copyright & Credit Bar */}
         <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
           <p>© 2025 Gaddhamukt Civic Portal. All rights reserved.</p>
-          <div className="flex items-center gap-1 text-slate-400">
-            <span>Built with civic passion for safer roads</span>
-            <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 inline-block" />
+          <div className="flex items-center gap-1.5 text-slate-300 font-medium">
+            <span>Crafted with</span>
+            <motion.span
+              animate={{ scale: [1, 1.3, 1, 1.3, 1] }}
+              transition={{ repeat: Infinity, duration: 1.4, ease: 'easeInOut' }}
+              className="inline-block"
+            >
+              <Heart className="w-4 h-4 text-red-500 fill-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+            </motion.span>
+            <span>by <strong className="text-white font-extrabold text-xs tracking-wide">Sushant Chand</strong> for safer roads</span>
           </div>
         </div>
 
