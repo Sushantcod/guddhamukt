@@ -81,11 +81,6 @@ export const HomePage: React.FC = () => {
           
           {/* Left Hero Story & Value Proposition */}
           <div className="lg:col-span-6 space-y-6 text-left z-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/20 border border-orange-400/40 text-orange-300 text-xs font-extrabold shadow-sm">
-              <Sparkles className="w-4 h-4 text-orange-400" />
-              <span>GADDHAMUKT CIVIC ROAD PLATFORM</span>
-            </div>
-
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-['Plus_Jakarta_Sans',sans-serif]">
               Report Potholes. <br />
               <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 bg-clip-text text-transparent">
