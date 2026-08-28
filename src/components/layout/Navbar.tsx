@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
     { label: 'Issue Map', path: '/', icon: Compass },
     { label: 'Track Complaint', path: '/track', icon: FileText },
     { label: 'Public Dashboard', path: '/dashboard', icon: BarChart3 },
-    { label: 'Admin Demo', path: '/admin', icon: ShieldAlert },
+    { label: 'Admin Portal', path: '/admin', icon: ShieldAlert },
   ];
 
   const isActive = (path: string) => {
@@ -147,7 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
                 }`}
               >
                 <UserCircle className="w-4 h-4 text-[#F97316]" />
-                <span>Demo Login</span>
+                <span>Login</span>
               </Link>
             )}
 
@@ -234,7 +234,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
               className="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-orange-300 bg-orange-500/15 hover:bg-orange-500/25 transition-all border border-orange-500/30 mt-3"
             >
               <UserCircle className="w-4 h-4 text-orange-400" />
-              <span>Demo Login / Officer Portal</span>
+              <span>Officer & Citizen Login</span>
             </Link>
           </div>
         </div>

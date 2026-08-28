@@ -38,7 +38,6 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
               {title}
             </h1>
             {badge}
-            <SourceBadge type="demo" />
           </div>
           {subtitle && (
             <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl font-medium">

@@ -6,21 +6,18 @@ import {
   HardHat, 
   Building2, 
   Trees, 
-  Lock, 
   Phone, 
   ArrowRight, 
   CheckCircle2, 
-  Sparkles,
   KeyRound,
-  AlertCircle
+  Lock
 } from 'lucide-react';
 import { Logo } from '../components/common/Logo';
-import { GlowPillButton } from '../components/ui/GlowPillButton';
 
-type DemoRole = 'citizen' | 'ward_engineer' | 'commissioner' | 'sarpanch';
+type PortalRole = 'citizen' | 'ward_engineer' | 'commissioner' | 'sarpanch';
 
 interface RoleProfile {
-  id: DemoRole;
+  id: PortalRole;
   title: string;
   badge: string;
   icon: React.ElementType;
@@ -29,18 +26,17 @@ interface RoleProfile {
   defaultPass: string;
   permissions: string[];
   redirectPath: string;
-  mode: 'urban' | 'rural' | 'all';
 }
 
-const DEMO_PROFILES: RoleProfile[] = [
+const PORTAL_PROFILES: RoleProfile[] = [
   {
     id: 'citizen',
     title: 'Citizen Reporter',
-    badge: 'Public User',
+    badge: 'Public Portal',
     icon: User,
     dept: 'Civic Grievance System',
     defaultIdentifier: '+91 98450 12345',
-    defaultPass: '123456 (Demo OTP)',
+    defaultPass: '123456',
     permissions: [
       'Report new potholes & road damage',
       'Track live grievance SLA resolution',
@@ -48,7 +44,6 @@ const DEMO_PROFILES: RoleProfile[] = [
       'Rate contractor repair quality',
     ],
     redirectPath: '/',
-    mode: 'all',
   },
   {
     id: 'ward_engineer',
@@ -65,7 +60,6 @@ const DEMO_PROFILES: RoleProfile[] = [
       'Close tickets within 72h statutory SLA',
     ],
     redirectPath: '/admin',
-    mode: 'urban',
   },
   {
     id: 'sarpanch',
@@ -81,7 +75,6 @@ const DEMO_PROFILES: RoleProfile[] = [
       'Route unresolved issues to District BDO',
     ],
     redirectPath: '/admin',
-    mode: 'rural',
   },
   {
     id: 'commissioner',
@@ -98,23 +91,22 @@ const DEMO_PROFILES: RoleProfile[] = [
       'Reallocate civil maintenance budgets',
     ],
     redirectPath: '/dashboard',
-    mode: 'urban',
   },
 ];
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const [selectedRole, setSelectedRole] = useState<DemoRole>('citizen');
-  const [identifier, setIdentifier] = useState(DEMO_PROFILES[0].defaultIdentifier);
-  const [password, setPassword] = useState(DEMO_PROFILES[0].defaultPass);
+  const [selectedRole, setSelectedRole] = useState<PortalRole>('citizen');
+  const [identifier, setIdentifier] = useState(PORTAL_PROFILES[0].defaultIdentifier);
+  const [password, setPassword] = useState(PORTAL_PROFILES[0].defaultPass);
   const [isLoading, setIsLoading] = useState(false);
   const [authSuccess, setAuthSuccess] = useState(false);
 
-  const activeProfile = DEMO_PROFILES.find((p) => p.id === selectedRole) || DEMO_PROFILES[0];
+  const activeProfile = PORTAL_PROFILES.find((p) => p.id === selectedRole) || PORTAL_PROFILES[0];
 
-  const handleRoleSelect = (role: DemoRole) => {
+  const handleRoleSelect = (role: PortalRole) => {
     setSelectedRole(role);
-    const profile = DEMO_PROFILES.find((p) => p.id === role);
+    const profile = PORTAL_PROFILES.find((p) => p.id === role);
     if (profile) {
       setIdentifier(profile.defaultIdentifier);
       setPassword(profile.defaultPass);
@@ -125,7 +117,6 @@ export const LoginPage: React.FC = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Save session in local storage
     setTimeout(() => {
       setIsLoading(false);
       setAuthSuccess(true);
@@ -157,22 +148,22 @@ export const LoginPage: React.FC = () => {
 
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 border border-orange-400/40 text-orange-300 text-xs font-bold">
-              <Sparkles className="w-3.5 h-3.5 text-orange-400" />
-              <span>Unified Civic Portal Demo</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-orange-400" />
+              <span>Unified Civic Portal</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug font-['Plus_Jakarta_Sans',sans-serif]">
               Transparent Roads. <br />
               <span className="text-[#F97316]">Direct Accountability.</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Login to report civic road hazards, monitor statutory SLA resolution timers, or access the municipal administration dashboard.
+              Sign in to report civic road hazards, monitor statutory SLA resolution timers, or access official municipal administration portals.
             </p>
           </div>
 
           {/* Quick Role Perks Box */}
           <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-2.5">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300 block">
-              Active Persona: <strong className="text-orange-400">{activeProfile.title}</strong>
+              Active Access Role: <strong className="text-orange-400">{activeProfile.title}</strong>
             </span>
             <ul className="space-y-1.5 text-xs text-slate-200">
               {activeProfile.permissions.map((perm, idx) => (
@@ -187,13 +178,14 @@ export const LoginPage: React.FC = () => {
 
         {/* Right Side: Interactive Login Card */}
         <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-6">
-          {/* Persona Switcher Buttons */}
+          
+          {/* Role Switcher */}
           <div className="space-y-2">
             <label className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-              Select Demo Persona
+              Select Access Role
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {DEMO_PROFILES.map((profile) => {
+              {PORTAL_PROFILES.map((profile) => {
                 const Icon = profile.icon;
                 const isSelected = selectedRole === profile.id;
                 return (
@@ -244,21 +236,18 @@ export const LoginPage: React.FC = () => {
                 <label className="text-xs font-bold text-slate-700">
                   {selectedRole === 'citizen' ? 'One-Time Password (OTP)' : 'Official Access Password'}
                 </label>
-                <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded">
-                  Demo Auto-Filled
-                </span>
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                   <KeyRound className="w-4 h-4" />
                 </div>
                 <input
-                  type="text"
+                  type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-xs font-semibold text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-[#F97316] focus:border-transparent transition-all"
-                  placeholder="Enter demo passcode"
+                  placeholder="Enter access passcode"
                 />
               </div>
             </div>
@@ -288,11 +277,11 @@ export const LoginPage: React.FC = () => {
                   <span>Authenticating Session...</span>
                 ) : authSuccess ? (
                   <span className="flex items-center gap-1.5 text-emerald-300">
-                    <CheckCircle2 className="w-4 h-4" /> Login Successful! Redirecting...
+                    <CheckCircle2 className="w-4 h-4" /> Access Granted! Redirecting...
                   </span>
                 ) : (
                   <>
-                    <span>Enter as {activeProfile.title}</span>
+                    <span>Sign In as {activeProfile.title}</span>
                     <ArrowRight className="w-4 h-4 text-[#F97316]" />
                   </>
                 )}
@@ -300,11 +289,10 @@ export const LoginPage: React.FC = () => {
             </div>
           </form>
 
-          {/* Quick Notice */}
           <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-2.5 text-[11px] text-slate-600">
-            <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+            <Lock className="w-4 h-4 text-[#123C69] shrink-0 mt-0.5" />
             <div>
-              <strong>Secure Simulated Environment:</strong> No real passwords required. You can toggle any persona above to test the platform as a citizen, junior engineer, or commissioner.
+              <strong>Civic Single Sign-On (SSO):</strong> You can select any role above to test the platform as a citizen, junior engineer, sarpanch, or commissioner.
             </div>
           </div>
         </div>

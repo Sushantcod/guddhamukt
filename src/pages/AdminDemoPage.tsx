@@ -88,11 +88,11 @@ export const AdminDemoPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#F8FAFC] pb-16 space-y-6">
       <PageHeader
-        title="Admin Work Order & Dispatch Console"
-        subtitle="Simulated municipal engineer panel to update road repair stages, upload proof of work, and test escalation routes."
+        title="Municipal Work Order & Dispatch Console"
+        subtitle="Official municipal engineer panel to update road repair stages, upload proof of work, and manage escalation routes."
         backHref="/"
         backLabel="Back to Map"
-        badge={<SourceBadge type="demo" label="Admin Simulator" />}
+        badge={<span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-800 text-xs font-bold border border-blue-200">Municipal Operations</span>}
         rightAction={
           <button
             onClick={() => {
