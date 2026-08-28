@@ -7,23 +7,117 @@ import {
   UserCheck, 
   Clock,
   CheckCircle2,
-  PhoneCall
+  PhoneCall,
+  FileDown,
+  AlertTriangle
 } from 'lucide-react';
-import { Issue } from '../../types';
+import { Issue, RoadContract } from '../../types';
 import { getEscalationChainForIssue } from '../../utils/escalationHelpers';
+import { generateComplaintPdf } from '../../utils/generateComplaintPdf';
 import { SourceBadge } from '../common/SourceBadge';
 
 interface AuthorityChainProps {
   issue: Issue;
+  contract?: RoadContract;
 }
 
-export const AuthorityChain: React.FC<AuthorityChainProps> = ({ issue }) => {
+export const AuthorityChain: React.FC<AuthorityChainProps> = ({ issue, contract }) => {
   const chainData = getEscalationChainForIssue(issue);
   const { actualResponsibleDept, escalationNodes, hasPoliceEmergencyRoute, policeAdvisory } = chainData;
 
+  const isResolved = issue.status === 'Resolved' || issue.status === 'Citizen Verified';
+  const isOverdue = issue.isOverdue || issue.simulatedRouteStatus === 'Overdue';
+  const isEscalationReady = issue.simulatedRouteStatus === 'Escalation packet ready' || issue.isEscalated;
+
   return (
     <div className="space-y-6">
-      {/* 1. ACTUAL STATUTORY RESPONSIBLE DEPARTMENT CARD */}
+      {/* 1. SLA COUNTDOWN & ESCALATION PACKET BANNER */}
+      {!isResolved && (
+        <div
+          className={`rounded-2xl p-5 border transition-all ${
+            isEscalationReady
+              ? 'bg-purple-50/90 border-purple-300'
+              : isOverdue
+              ? 'bg-red-50/90 border-red-300'
+              : 'bg-blue-50/90 border-blue-200'
+          }`}
+        >
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <div
+                className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                  isEscalationReady
+                    ? 'bg-purple-600 text-white'
+                    : isOverdue
+                    ? 'bg-red-600 text-white'
+                    : 'bg-blue-600 text-white'
+                }`}
+              >
+                {isOverdue || isEscalationReady ? (
+                  <AlertTriangle className="w-5 h-5" />
+                ) : (
+                  <Clock className="w-5 h-5" />
+                )}
+              </div>
+
+              <div className="space-y-1">
+                <h4
+                  className={`font-extrabold text-sm ${
+                    isEscalationReady
+                      ? 'text-purple-950'
+                      : isOverdue
+                      ? 'text-red-950'
+                      : 'text-blue-950'
+                  }`}
+                >
+                  {isEscalationReady
+                    ? 'Escalation Packet Ready for Public Representatives'
+                    : isOverdue
+                    ? 'SLA Breached: Escalation In Progress'
+                    : 'Resolution SLA Timer Active'}
+                </h4>
+                <p
+                  className={`text-xs ${
+                    isEscalationReady
+                      ? 'text-purple-800'
+                      : isOverdue
+                      ? 'text-red-800'
+                      : 'text-blue-800'
+                  }`}
+                >
+                  {isEscalationReady
+                    ? 'Statutory SLA elapsed. A dossier has been prepared for MLA, MP & CMO grievance audit.'
+                    : isOverdue
+                    ? 'The assigned municipal division missed the statutory resolution window.'
+                    : `Target SLA Deadline: ${new Date(issue.slaDeadline).toLocaleDateString('en-IN', {
+                        day: 'numeric',
+                        month: 'short',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}`}
+                </p>
+              </div>
+            </div>
+
+            {/* CTA to Download Escalation PDF */}
+            <button
+              onClick={() => generateComplaintPdf(issue, contract)}
+              className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm shrink-0 cursor-pointer ${
+                isEscalationReady
+                  ? 'bg-purple-700 hover:bg-purple-800 text-white'
+                  : isOverdue
+                  ? 'bg-red-600 hover:bg-red-700 text-white'
+                  : 'bg-[#123C69] hover:bg-[#00264b] text-white'
+              }`}
+            >
+              <FileDown className="w-4 h-4" />
+              <span>Download Escalation Packet (PDF)</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 2. ACTUAL STATUTORY RESPONSIBLE DEPARTMENT CARD */}
       <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm border-t-4 border-[#2563EB]">
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100 mb-4">
           <div className="flex items-center gap-2">
@@ -94,7 +188,7 @@ export const AuthorityChain: React.FC<AuthorityChainProps> = ({ issue }) => {
         </div>
       </div>
 
-      {/* 2. EMERGENCY POLICE / IPS ROUTE (APPEARS ONLY IF IMMEDIATE DANGER) */}
+      {/* 3. EMERGENCY POLICE / IPS ROUTE (APPEARS ONLY IF IMMEDIATE DANGER) */}
       {hasPoliceEmergencyRoute && policeAdvisory && (
         <div className="bg-red-50 border-2 border-red-500 rounded-lg p-5 shadow-sm">
           <div className="flex items-start gap-3">
@@ -133,7 +227,7 @@ export const AuthorityChain: React.FC<AuthorityChainProps> = ({ issue }) => {
         </div>
       )}
 
-      {/* 3. CITIZEN ESCALATION CHAIN CARD */}
+      {/* 4. CITIZEN ESCALATION CHAIN CARD */}
       <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
           <div className="flex items-center gap-2">
@@ -230,4 +324,3 @@ export const AuthorityChain: React.FC<AuthorityChainProps> = ({ issue }) => {
     </div>
   );
 };
-

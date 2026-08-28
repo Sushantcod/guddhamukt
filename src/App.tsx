@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { DemoNoticeBanner } from './components/layout/DemoNoticeBanner';
 import { Navbar } from './components/layout/Navbar';
-import { Footer } from './components/layout/Footer';
 
 import { HomePage } from './pages/HomePage';
 import { ReportIssuePage } from './pages/ReportIssuePage';
@@ -15,9 +13,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-slate-900 selection:bg-orange-100 selection:text-orange-900 font-sans">
-        {/* Top Disclaimer Banner */}
-        <DemoNoticeBanner />
-
         {/* Global Navigation Bar */}
         <Navbar />
 
@@ -34,9 +29,6 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
-
-        {/* Global Civic Footer */}
-        <Footer />
       </div>
     </BrowserRouter>
   );

@@ -16,8 +16,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     landmark: 'Opposite Shell Fuel Station, Outer Ring Road',
     latitude: 12.9279,
     longitude: 77.6801,
-    photoUrl:
-      'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=1200&q=80',
+    photoUrl: '/demo-images/pothole-1.jpg',
     repairProofUrl: undefined,
     confirmationCount: 42,
     status: 'Inspection Scheduled',
@@ -105,8 +104,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     landmark: 'Near Bus Bay 14',
     latitude: 12.9282,
     longitude: 77.6803,
-    photoUrl:
-      'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
+    photoUrl: '/demo-images/pothole-2.jpg',
     confirmationCount: 18,
     status: 'Acknowledged',
     simulatedRouteStatus: 'Simulated route',
@@ -279,8 +277,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     longitude: 77.7421,
     photoUrl:
       'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80',
-    repairProofUrl:
-      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80',
+    repairProofUrl: '/demo-images/repair-proof.jpg',
     confirmationCount: 29,
     status: 'Resolved',
     simulatedRouteStatus: 'Acknowledged',

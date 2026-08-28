@@ -1,6 +1,10 @@
+import React from 'react';
 import L from 'leaflet';
-import { Issue, IssueSeverity, IssueStatus } from '../../types';
+import { Issue } from '../../types';
 
+/**
+ * Creates custom styled HTML Leaflet DivIcon for pins
+ */
 export function createCustomMarkerIcon(issue: Issue, isSelected: boolean = false): L.DivIcon {
   const isEmergency = issue.severity === 'Immediate Danger';
   const isOverdue = issue.isOverdue;
@@ -17,25 +21,25 @@ export function createCustomMarkerIcon(issue: Issue, isSelected: boolean = false
     ? `<span class="absolute -inset-1 rounded-full bg-red-500 animate-ping opacity-75"></span>`
     : '';
 
+  const symbol = isResolved
+    ? '✓'
+    : isEmergency
+    ? '!'
+    : issue.category === 'Pothole'
+    ? 'P'
+    : issue.category === 'Streetlight'
+    ? 'L'
+    : issue.category === 'Drainage' || issue.category === 'Waterlogging'
+    ? 'D'
+    : 'R';
+
   const html = `
     <div class="relative flex items-center justify-center cursor-pointer transition-transform duration-200 ${
       isSelected ? 'scale-125 z-50' : 'hover:scale-110'
     }">
       ${pulseHtml}
       <div style="background-color: ${pinColor};" class="relative w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-md border-2 border-white ring-1 ring-black/10">
-        ${
-          isResolved
-            ? '✓'
-            : isEmergency
-            ? '!'
-            : issue.category === 'Pothole'
-            ? 'P'
-            : issue.category === 'Streetlight'
-            ? 'L'
-            : issue.category === 'Drainage' || issue.category === 'Waterlogging'
-            ? 'D'
-            : 'R'
-        }
+        ${symbol}
       </div>
       <div style="border-top-color: ${pinColor};" class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-6"></div>
     </div>
@@ -50,6 +54,9 @@ export function createCustomMarkerIcon(issue: Issue, isSelected: boolean = false
   });
 }
 
+/**
+ * Creates draggable pin marker for new report pinpointing
+ */
 export function createDraggablePinIcon(): L.DivIcon {
   const html = `
     <div class="relative flex items-center justify-center cursor-grab active:cursor-grabbing animate-bounce">
@@ -67,3 +74,22 @@ export function createDraggablePinIcon(): L.DivIcon {
     iconAnchor: [20, 48],
   });
 }
+
+/**
+ * React Component for marker legend badges
+ */
+interface MarkerBadgeProps {
+  label: string;
+  color: string;
+  count?: number;
+}
+
+export const MarkerBadge: React.FC<MarkerBadgeProps> = ({ label, color, count }) => {
+  return (
+    <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 bg-white/90 px-2 py-1 rounded-md border border-slate-200 shadow-2xs">
+      <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }} />
+      <span>{label}</span>
+      {count !== undefined && <span className="text-slate-400 font-normal">({count})</span>}
+    </div>
+  );
+};

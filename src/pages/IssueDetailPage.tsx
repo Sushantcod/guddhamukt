@@ -22,7 +22,6 @@ import { StatusBadge, SeverityBadge, CategoryBadge, SimulatedRouteBadge } from '
 import { IssueTimeline } from '../components/issue/IssueTimeline';
 import { AccountabilityCard } from '../components/issue/AccountabilityCard';
 import { AuthorityChain } from '../components/issue/AuthorityChain';
-import { EscalationCountdown } from '../components/issue/EscalationCountdown';
 import { generateComplaintPdf, copyComplaintTextToClipboard } from '../utils/generateComplaintPdf';
 import { formatDateString, formatDateTimeString } from '../utils/issueHelpers';
 import { EmptyState } from '../components/common/EmptyState';
@@ -105,9 +104,6 @@ export const IssueDetailPage: React.FC = () => {
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        {/* SLA Countdown & Escalation Banner */}
-        <EscalationCountdown issue={issue} contract={contract} />
-
         {/* 2-Column Responsive Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Column: Visuals & Core Dossier (7 Cols) */}
@@ -224,7 +220,7 @@ export const IssueDetailPage: React.FC = () => {
             {contract && <AccountabilityCard contract={contract} />}
 
             {/* Statutory Department & Escalation Chain */}
-            <AuthorityChain issue={issue} />
+            <AuthorityChain issue={issue} contract={contract} />
           </div>
 
           {/* Right Column: Timeline & Action Modules (5 Cols) */}

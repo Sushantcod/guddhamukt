@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <!-- Rounded Emblem Icon -->
+  <rect x="4" y="6" width="48" height="48" rx="12" fill="url(#logo_grad)" />
+  
+  <!-- Road and Pin Graphic inside Emblem -->
+  <path d="M18 44L24 16H32L38 44H32L30 34H26L24 44H18Z" fill="white" opacity="0.9" />
+  <circle cx="28" cy="24" r="3" fill="#F97316" />
+  <path d="M28 14C23.0294 14 19 18.0294 19 23C19 28.5 28 39 28 39C28 39 37 28.5 37 23C37 18.0294 32.9706 14 28 14ZM28 26C26.3431 26 25 24.6569 25 23C25 21.3431 26.3431 20 28 20C29.6569 20 31 21.3431 31 23C31 24.6569 29.6569 26 28 26Z" fill="white"/>
+
+  <!-- Brand Typography -->
+  <text x="64" y="35" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="24" font-weight="800" fill="#123C69" letter-spacing="-0.5">
+    Guddha<tspan fill="#F97316">Mutk</tspan>
+  </text>
+  <text x="65" y="47" font-family="Plus Jakarta Sans, Inter, system-ui, sans-serif" font-size="9" font-weight="700" fill="#64748B" letter-spacing="1.5">
+    CIVIC ROAD ACCOUNTABILITY
+  </text>
+
+  <!-- Gradient Definitions -->
+  <defs>
+    <linearGradient id="logo_grad" x1="4" y1="6" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123C69" />
+      <stop offset="1" stop-color="#1E293B" />
+    </linearGradient>
+  </defs>
+</svg>
