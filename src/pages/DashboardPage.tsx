@@ -1,107 +1,134 @@
 import React, { useState } from 'react';
 import { 
-  BarChart3, 
-  Download, 
   Building2, 
   Trees, 
-  ShieldCheck, 
-  Clock, 
-  CheckCircle2, 
-  AlertTriangle,
-  Flame,
-  Users,
-  FileJson
+  FileJson,
+  GraduationCap,
+  Layers
 } from 'lucide-react';
+import { motion } from 'motion/react';
 import { useIssues } from '../hooks/useIssues';
 import { CivicMode } from '../types';
 import { PageHeader } from '../components/layout/PageHeader';
 import { MetricCard } from '../components/dashboard/MetricCard';
 import { WardChart } from '../components/dashboard/WardChart';
 import { HotspotList } from '../components/dashboard/HotspotList';
-import { SourceBadge } from '../components/common/SourceBadge';
+
+type JurisdictionMode = 'all' | 'punjab' | 'urban' | 'rural';
 
 export const DashboardPage: React.FC = () => {
   const { issues, getMetrics } = useIssues();
-  const [selectedMode, setSelectedMode] = useState<CivicMode | 'all'>('all');
+  const [selectedMode, setSelectedMode] = useState<JurisdictionMode>('all');
 
-  const filteredIssues =
-    selectedMode === 'all' ? issues : issues.filter((i) => i.mode === selectedMode);
+  // Filter issues based on selected region
+  const filteredIssues = issues.filter((issue) => {
+    if (selectedMode === 'all') return true;
+    if (selectedMode === 'punjab') return issue.id.includes('PB') || issue.wardOrVillage.includes('Phagwara') || issue.wardOrVillage.includes('Punjab');
+    if (selectedMode === 'urban') return issue.mode === 'urban' && !issue.id.includes('PB');
+    if (selectedMode === 'rural') return issue.mode === 'rural' && !issue.id.includes('PB');
+    return true;
+  });
 
-  const metrics = getMetrics(selectedMode);
+  const modeForMetrics: CivicMode | 'all' = selectedMode === 'all' ? 'all' : selectedMode === 'rural' ? 'rural' : 'urban';
+  const metrics = getMetrics(modeForMetrics);
 
   const handleExportJSON = () => {
     const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(issues, null, 2));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute('href', dataStr);
-    downloadAnchor.setAttribute('download', `GuddhaMutk_Open_Data_Export_${new Date().toISOString().slice(0, 10)}.json`);
+    downloadAnchor.setAttribute('download', `Gaddhamukt_Open_Data_Export_${new Date().toISOString().slice(0, 10)}.json`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-16 space-y-6">
+    <div className="min-h-screen bg-[#F8FAFC] pb-16 space-y-8">
       <PageHeader
         title="Public Civic Works & SLA Dashboard"
-        subtitle="Open accountability metrics, municipal response speeds, and high-risk road hotspots."
+        subtitle="Open accountability metrics, municipal response speeds, and high-risk road defect hotspots."
         backHref="/"
         backLabel="Back to Map"
         rightAction={
           <button
+            type="button"
             onClick={handleExportJSON}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-extrabold text-[#123C69] shadow-2xs transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-black text-[#0F294A] shadow-xs transition-all cursor-pointer"
           >
-            <FileJson className="w-4 h-4 text-orange-500" />
+            <FileJson className="w-4 h-4 text-[#F97316]" />
             <span>Export Open Data (JSON)</span>
           </button>
         }
       />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
-        {/* Mode Selector Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-3.5 rounded-lg border border-slate-200 shadow-xs">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-left">
+        
+        {/* Jurisdiction Filter Switcher Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-3xl border border-slate-200/90 shadow-sm">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              Jurisdiction Filter:
+            <Layers className="w-4 h-4 text-[#F97316]" />
+            <span className="text-xs font-black text-[#0F294A] uppercase tracking-wider">
+              Jurisdiction Grid:
             </span>
-            <SourceBadge type="demo" />
           </div>
 
-          <div className="flex items-center bg-white p-1 rounded-lg border border-slate-200 text-xs font-bold shadow-2xs">
+          {/* Region Tabs */}
+          <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1.5 rounded-2xl text-xs font-extrabold">
             <button
+              type="button"
               onClick={() => setSelectedMode('all')}
-              className={`px-3 py-1 rounded transition-all ${
-                selectedMode === 'all' ? 'bg-[#123C69] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              className={`px-4 py-2 rounded-xl transition-all cursor-pointer ${
+                selectedMode === 'all'
+                  ? 'bg-[#0F294A] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              All Regions
+              All Regions ({issues.length})
             </button>
             <button
+              type="button"
+              onClick={() => setSelectedMode('punjab')}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl transition-all cursor-pointer ${
+                selectedMode === 'punjab'
+                  ? 'bg-[#0F294A] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <GraduationCap className="w-4 h-4 text-amber-400" />
+              <span>Punjab & LPU ({issues.filter((i) => i.id.includes('PB')).length})</span>
+            </button>
+            <button
+              type="button"
               onClick={() => setSelectedMode('urban')}
-              className={`flex items-center gap-1 px-3 py-1 rounded transition-all ${
-                selectedMode === 'urban' ? 'bg-[#123C69] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl transition-all cursor-pointer ${
+                selectedMode === 'urban'
+                  ? 'bg-[#0F294A] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <Building2 className="w-3.5 h-3.5" />
-              Urban (Bengaluru)
+              <Building2 className="w-4 h-4 text-blue-400" />
+              <span>Urban (Bengaluru)</span>
             </button>
             <button
+              type="button"
               onClick={() => setSelectedMode('rural')}
-              className={`flex items-center gap-1 px-3 py-1 rounded transition-all ${
-                selectedMode === 'rural' ? 'bg-[#123C69] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl transition-all cursor-pointer ${
+                selectedMode === 'rural'
+                  ? 'bg-[#0F294A] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <Trees className="w-3.5 h-3.5" />
-              Rural (Rampur)
+              <Trees className="w-4 h-4 text-emerald-400" />
+              <span>Rural (Rampur)</span>
             </button>
           </div>
         </div>
 
         {/* 6 High-Contrast KPI Metric Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-3.5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <MetricCard
             title="Total Hazards"
-            value={metrics.totalReports}
+            value={filteredIssues.length}
             subtitle="Geo-tickets"
             trend="+14%"
             trendPositive={true}
@@ -140,42 +167,48 @@ export const DashboardPage: React.FC = () => {
           <MetricCard
             title="Escalated Dossiers"
             value={metrics.escalatedCount}
-            subtitle="MLA / CMO packets"
+            subtitle="RTI & CMO packets"
             iconType="escalated"
           />
         </div>
 
         {/* Speed of Service Performance Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-white rounded-lg border border-slate-200 p-4 shadow-xs flex items-center gap-4 border-l-4 border-l-[#2563EB]">
-            <div className="w-10 h-10 rounded-md bg-blue-50 text-[#123C69] flex items-center justify-center font-black text-base border border-blue-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+          <div className="bg-white rounded-3xl border border-slate-200/90 p-5 shadow-xs flex items-center gap-4 border-l-4 border-l-blue-600">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#0F294A] flex items-center justify-center font-black text-xl border border-blue-200 shrink-0">
               ⚡
             </div>
             <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">
                 Average Municipal Acknowledgement Speed
               </span>
-              <p className="text-xl font-black text-[#123C69] mt-0.5">
+              <p className="text-2xl font-black text-[#0F294A] mt-0.5">
                 {metrics.averageAcknowledgementHours} Hours
               </p>
-              <p className="text-[11px] text-slate-500">Benchmark: Within 24 hours under Citizen Charter</p>
+              <p className="text-xs text-slate-500 font-semibold mt-0.5">
+                Benchmark: Within 24 hours under Citizen Charter
+              </p>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-slate-200 p-4 shadow-xs flex items-center gap-4 border-l-4 border-l-[#15803D]">
-            <div className="w-10 h-10 rounded-md bg-emerald-50 text-emerald-700 flex items-center justify-center font-black text-base border border-emerald-200">
+          <div className="bg-white rounded-3xl border border-slate-200/90 p-5 shadow-xs flex items-center gap-4 border-l-4 border-l-emerald-600">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-black text-xl border border-emerald-200 shrink-0">
               🛠️
             </div>
             <div>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">
                 Average Physical Resolution Turnaround
               </span>
-              <p className="text-xl font-black text-[#15803D] mt-0.5">
+              <p className="text-2xl font-black text-emerald-700 mt-0.5">
                 {metrics.averageResolutionDays} Days
               </p>
-              <p className="text-[11px] text-slate-500">From photo submission to asphalt compaction</p>
+              <p className="text-xs text-slate-500 font-semibold mt-0.5">
+                From photo submission to asphalt compaction
+              </p>
             </div>
           </div>
+
         </div>
 
         {/* Recharts Breakdown: Ward Comparisons & Category Pie */}
@@ -183,7 +216,10 @@ export const DashboardPage: React.FC = () => {
 
         {/* Hotspots Leaderboard */}
         <HotspotList issues={filteredIssues} />
+
       </main>
     </div>
   );
 };
+
+export default DashboardPage;
