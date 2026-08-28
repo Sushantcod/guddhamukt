@@ -1,0 +1,6 @@
+{
+  "name": "GuddhaMutk",
+  "description": "Civic road-issue reporting and accountability platform for urban cities and rural villages.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
