@@ -11,9 +11,9 @@ import {
   Building2,
   Trees,
   UserCircle,
-  LogOut,
-  Sparkles
+  LogOut
 } from 'lucide-react';
+import { motion } from 'motion/react';
 import { CivicMode } from '../../types';
 import { Logo } from '../common/Logo';
 
@@ -96,8 +96,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
             )}
           </div>
 
-          {/* CENTER: Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-[#08192D]/80 p-1.5 rounded-2xl border border-white/10 shadow-inner">
+          {/* CENTER: Tubelight Floating Pill Navbar */}
+          <nav className="hidden lg:flex items-center bg-[#07172B]/90 border border-slate-700/80 rounded-full px-3 py-1.5 shadow-2xl relative">
             {navLinks.map((link) => {
               const Icon = link.icon;
               const active = isActive(link.path);
@@ -105,14 +105,26 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all text-xs font-bold ${
-                    active
-                      ? 'bg-[#123C69] text-[#F97316] shadow-sm border border-white/15'
-                      : 'text-slate-200 hover:text-white hover:bg-white/5'
+                  className={`relative flex items-center gap-2 px-4 py-2 rounded-full transition-colors text-xs font-extrabold ${
+                    active ? 'text-white' : 'text-slate-300 hover:text-white'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${active ? 'text-[#F97316]' : 'text-slate-400'}`} />
-                  <span>{link.label}</span>
+                  {/* Tubelight Glow Top Indicator Bar & Active Pill Background */}
+                  {active && (
+                    <motion.div
+                      layoutId="tubelight-active-glow"
+                      className="absolute inset-0 bg-slate-800/90 rounded-full border border-slate-600/50 shadow-md"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    >
+                      {/* Top Tubelight Lamp Glow */}
+                      <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-8 h-1 bg-white rounded-full shadow-[0_-4px_14px_rgba(255,255,255,0.9),0_0_20px_rgba(249,115,22,0.9)]" />
+                    </motion.div>
+                  )}
+
+                  <span className="relative z-10 flex items-center gap-2">
+                    <Icon className={`w-4 h-4 ${active ? 'text-[#F97316]' : 'text-slate-400'}`} />
+                    <span>{link.label}</span>
+                  </span>
                 </Link>
               );
             })}
@@ -120,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
 
           {/* RIGHT CORNER: Login Portal & Report Issue CTA */}
           <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-            {/* Demo Login / Active Session Pill */}
+            {/* Login / Active Session Pill */}
             {userSession ? (
               <div className="flex items-center gap-2 bg-[#123C69] border border-white/20 px-3 py-1.5 rounded-xl text-xs shadow-sm">
                 <UserCircle className="w-4 h-4 text-[#F97316]" />
