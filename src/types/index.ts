@@ -122,4 +122,6 @@ export interface DashboardMetrics {
   escalatedCount: number;
   avgAckTimeDays: number;
   avgRepairTimeDays: number;
+  averageAcknowledgementHours?: number;
+  averageResolutionDays?: number;
 }

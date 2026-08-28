@@ -8,6 +8,7 @@ import { IssueDetailPage } from './pages/IssueDetailPage';
 import { TrackComplaintPage } from './pages/TrackComplaintPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { AdminDemoPage } from './pages/AdminDemoPage';
+import { LoginPage } from './pages/LoginPage';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/track/:id" element={<TrackComplaintPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/admin" element={<AdminDemoPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>

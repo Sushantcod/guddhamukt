@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
-  MapPin, 
   PlusCircle, 
-  Search, 
   BarChart3, 
   FileText, 
   ShieldAlert, 
@@ -11,9 +9,12 @@ import {
   X,
   Compass,
   Building2,
-  Trees
+  Trees,
+  UserCircle,
+  LogOut
 } from 'lucide-react';
 import { CivicMode } from '../../types';
+import { Logo } from '../common/Logo';
 
 interface NavbarProps {
   currentMode?: CivicMode;
@@ -22,7 +23,24 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userSession, setUserSession] = useState<{ name: string; role: string } | null>(null);
   const location = useLocation();
+
+  useEffect(() => {
+    const raw = localStorage.getItem('gm_user_session');
+    if (raw) {
+      try {
+        setUserSession(JSON.parse(raw));
+      } catch (e) {
+        setUserSession(null);
+      }
+    }
+  }, [location.pathname]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('gm_user_session');
+    setUserSession(null);
+  };
 
   const navLinks = [
     { label: 'Issue Map', path: '/', icon: Compass },
@@ -38,34 +56,20 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#123C69] text-white shadow-lg border-b border-[#0f2d4e]">
+    <header className="sticky top-0 z-40 bg-[#0F294A] text-white shadow-lg border-b border-[#1A3D68]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-18">
-          {/* Logo & Tagline */}
+          {/* Official Logo */}
           <div className="flex items-center gap-4">
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-[#F97316] rounded-lg flex items-center justify-center font-bold text-xl text-white shadow-sm transition-transform group-hover:scale-105">
-                GM
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <h1 className="text-xl font-bold leading-tight tracking-tight text-white font-['Plus_Jakarta_Sans',sans-serif]">
-                    Guddha<span className="text-[#F97316]">Mutk</span>
-                  </h1>
-                </div>
-                <p className="text-[10px] uppercase tracking-widest text-slate-300 font-medium">
-                  Civic Accountability Platform
-                </p>
-              </div>
-            </Link>
+            <Logo size="md" theme="dark" />
 
             {/* Urban / Rural Mode Selector Pill in Navbar */}
             {onModeChange && (
-              <div className="hidden lg:flex items-center bg-[#0d2a4a] p-1 rounded-lg border border-white/10 ml-3">
+              <div className="hidden lg:flex items-center bg-[#08182B] p-1 rounded-lg border border-white/10 ml-3">
                 <button
                   type="button"
                   onClick={() => onModeChange('urban')}
-                  className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold transition-all ${
+                  className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
                     currentMode === 'urban'
                       ? 'bg-[#F97316] text-white shadow-xs'
                       : 'text-slate-300 hover:text-white'
@@ -77,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
                 <button
                   type="button"
                   onClick={() => onModeChange('rural')}
-                  className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold transition-all ${
+                  className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
                     currentMode === 'rural'
                       ? 'bg-[#F97316] text-white shadow-xs'
                       : 'text-slate-300 hover:text-white'
@@ -112,17 +116,42 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
             })}
           </nav>
 
-          {/* Action CTA & Technical Node Indicator */}
-          <div className="flex items-center gap-4">
-            <div className="hidden sm:flex flex-col items-end text-right">
-              <span className="text-xs font-bold text-slate-100">Live Grid</span>
-              <span className="text-[10px] text-slate-300 tracking-tight">Ward 174, BLR</span>
-            </div>
+          {/* Action CTA & Login Portal Link */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {userSession ? (
+              <div className="hidden sm:flex items-center gap-2 bg-[#123C69] border border-white/15 px-2.5 py-1.5 rounded-lg text-xs">
+                <UserCircle className="w-4 h-4 text-orange-400" />
+                <div className="flex flex-col text-left">
+                  <span className="font-bold text-white leading-tight">{userSession.name}</span>
+                  <span className="text-[9px] text-slate-300 capitalize">{userSession.role}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  title="Logout session"
+                  className="ml-1 p-1 text-slate-300 hover:text-red-400 hover:bg-white/10 rounded-md transition-colors"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+                  location.pathname === '/login'
+                    ? 'bg-white/20 text-white border-white/30'
+                    : 'bg-[#123C69]/60 hover:bg-[#123C69] text-slate-200 hover:text-white border-white/10'
+                }`}
+              >
+                <UserCircle className="w-4 h-4 text-orange-400" />
+                <span>Demo Login</span>
+              </Link>
+            )}
 
             <Link
               to="/report"
               id="nav-report-button"
-              className="inline-flex items-center gap-1.5 bg-[#F97316] hover:bg-[#ea580c] text-white px-4 py-2 rounded-md font-bold text-xs sm:text-sm shadow-sm transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center gap-1.5 bg-[#F97316] hover:bg-[#ea580c] text-white px-3.5 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm shadow-md transition-all transform hover:-translate-y-0.5 active:translate-y-0"
             >
               <PlusCircle className="w-4 h-4 text-white" />
               <span>Report Issue</span>
@@ -142,9 +171,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#0f2d4e] bg-[#123C69] px-4 pt-3 pb-6 space-y-3">
+        <div className="md:hidden border-t border-[#1A3D68] bg-[#0F294A] px-4 pt-3 pb-6 space-y-3">
           {onModeChange && (
-            <div className="flex items-center justify-between bg-[#0d2a4a] p-1 rounded-lg mb-3">
+            <div className="flex items-center justify-between bg-[#08182B] p-1 rounded-lg mb-3">
               <button
                 onClick={() => {
                   onModeChange('urban');
@@ -190,6 +219,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentMode, onModeChange }) => 
                 </Link>
               );
             })}
+
+            <Link
+              to="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-orange-300 bg-orange-500/10 hover:bg-orange-500/20 transition-all border border-orange-500/20 mt-2"
+            >
+              <UserCircle className="w-4 h-4 text-orange-400" />
+              <span>Demo Login / Officer Portal</span>
+            </Link>
           </div>
         </div>
       )}

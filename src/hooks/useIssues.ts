@@ -249,7 +249,6 @@ export function useIssues() {
       ).length;
       const escalatedCount = targetIssues.filter((i) => i.isEscalated || i.simulatedRouteStatus === 'Escalation packet ready').length;
 
-      // Realistic averages
       const avgAckTimeDays = mode === 'rural' ? 1.8 : 1.2;
       const avgRepairTimeDays = mode === 'rural' ? 4.5 : 3.2;
 
@@ -262,6 +261,8 @@ export function useIssues() {
         escalatedCount,
         avgAckTimeDays,
         avgRepairTimeDays,
+        averageAcknowledgementHours: Math.round(avgAckTimeDays * 24),
+        averageResolutionDays: avgRepairTimeDays,
       };
     },
     [issues]
