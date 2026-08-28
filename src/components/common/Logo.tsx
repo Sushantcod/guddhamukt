@@ -51,7 +51,7 @@ export const Logo: React.FC<LogoProps> = ({
               theme === 'dark' ? 'text-white' : 'text-[#0F294A]'
             }`}
           >
-            GUDDHA<span className="text-[#F97316]">MUTK</span>
+            GADDHA<span className="text-[#F97316]">MUKT</span>
           </h1>
         </div>
         {showTagline && (
