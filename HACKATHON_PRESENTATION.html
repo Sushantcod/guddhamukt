@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaddhamukt — Hackathon Presentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #07172B;
+      color: #F8FAFC;
+      overflow: hidden;
+    }
+    .slide {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      padding: 3rem 4rem;
+      box-sizing: border-box;
+    }
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="select-none">
+
+  <!-- SLIDE 1: TITLE & VISION -->
+  <div class="slide active" id="slide-1">
+    <div class="max-w-5xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F97316]/20 border border-[#F97316]/40 text-[#F97316] text-xs font-black uppercase tracking-widest">
+        <span>🏆 HACKATHON PRESENTATION</span>
+      </div>
+      <h1 class="text-6xl sm:text-7xl font-black text-white tracking-tight leading-tight">
+        GADDHAMUKT <br />
+        <span class="text-[#F97316]">(गड्ढामुक्त)</span>
+      </h1>
+      <p class="text-xl sm:text-2xl text-slate-300 font-semibold max-w-3xl mx-auto">
+        Report Potholes. Fix Roads. Hold Engineers Accountable.
+      </p>
+      <div class="pt-8 flex items-center justify-center gap-6 text-sm text-slate-400 font-bold">
+        <span>Presented by: <strong class="text-white">Sushant Chand</strong></span>
+        <span>•</span>
+        <span>Corridor: <strong class="text-orange-400">Punjab LPU GT Road & BBMP</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: PROBLEM -->
+  <div class="slide" id="slide-2">
+    <div class="max-w-5xl mx-auto space-y-8 text-left">
+      <span class="text-xs font-black text-[#F97316] uppercase tracking-widest">THE CORE PROBLEM</span>
+      <h2 class="text-4xl sm:text-5xl font-black text-white">Why Indian Roads Have Non-Stop Potholes</h2>
+      
+      <div class="grid grid-cols-3 gap-6 pt-4">
+        <div class="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-3">
+          <div class="text-3xl">🕳️</div>
+          <h3 class="text-xl font-black text-orange-400">Fatal Road Hazards</h3>
+          <p class="text-xs text-slate-300 leading-relaxed font-medium">
+            Thousands of commuters face severe accidents every monsoon due to unmonitored asphalt craters and deep road depressions.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-3">
+          <div class="text-3xl">❓</div>
+          <h3 class="text-xl font-black text-blue-400">Jurisdiction Confusion</h3>
+          <p class="text-xs text-slate-300 leading-relaxed font-medium">
+            Citizens don't know whether a road belongs to PWD, NHAI, Municipal Corporation, or Gram Panchayat.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-3">
+          <div class="text-3xl">📜</div>
+          <h3 class="text-xl font-black text-red-400">Zero Liability</h3>
+          <p class="text-xs text-slate-300 leading-relaxed font-medium">
+            Contractors face no penalties for sub-standard asphalt compaction. Complaints disappear into blackhole portals.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: SOLUTION -->
+  <div class="slide" id="slide-3">
+    <div class="max-w-5xl mx-auto space-y-8 text-left">
+      <span class="text-xs font-black text-[#F97316] uppercase tracking-widest">THE SOLUTION</span>
+      <h2 class="text-4xl sm:text-5xl font-black text-white">Gaddhamukt Closed-Loop Resolution Engine</h2>
+      
+      <div class="grid grid-cols-2 gap-6 pt-4">
+        <div class="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-2">
+          <h3 class="text-lg font-black text-orange-400">1. Photo Geo-Tagging & Ward Auto-Routing</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Citizens upload photos with instant GPS location mapping to auto-assign the exact Ward Engineer or Panchayat Sarpanch.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-2">
+          <h3 class="text-lg font-black text-emerald-400">2. Statutory 72-Hour SLA Countdown</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Dynamic resolution countdown timer (24h Immediate Danger, 48h High, 72h Medium) under Municipal Gazette guidelines.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-2">
+          <h3 class="text-lg font-black text-blue-400">3. 1-Click RTI & CMO PDF Dossier Generator</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            If an SLA is breached, citizens generate a formatted legal PDF complaint packet to submit directly to the Chief Minister's Office.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-2">
+          <h3 class="text-lg font-black text-purple-400">4. Interactive Before & After Repair Proof</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Dual-layer drag slider allowing citizens to visually verify asphalt compaction rollers and completed resurfacing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: TECH STACK -->
+  <div class="slide" id="slide-4">
+    <div class="max-w-5xl mx-auto space-y-8 text-left">
+      <span class="text-xs font-black text-[#F97316] uppercase tracking-widest">TECHNOLOGY & ARCHITECTURE</span>
+      <h2 class="text-4xl sm:text-5xl font-black text-white">Modern High-Performance Stack</h2>
+      
+      <div class="grid grid-cols-4 gap-4 pt-4">
+        <div class="p-5 bg-white/5 border border-white/10 rounded-2xl text-center space-y-2">
+          <div class="text-2xl font-black text-orange-400">Vite 6</div>
+          <p class="text-[11px] text-slate-400 font-semibold">Lightning Fast SPA Bundling</p>
+        </div>
+
+        <div class="p-5 bg-white/5 border border-white/10 rounded-2xl text-center space-y-2">
+          <div class="text-2xl font-black text-blue-400">React 19</div>
+          <p class="text-[11px] text-slate-400 font-semibold">TypeScript 5.8 Engine</p>
+        </div>
+
+        <div class="p-5 bg-white/5 border border-white/10 rounded-2xl text-center space-y-2">
+          <div class="text-2xl font-black text-emerald-400">Tailwind v4</div>
+          <p class="text-[11px] text-slate-400 font-semibold">Vanilla CSS & Glassmorphism</p>
+        </div>
+
+        <div class="p-5 bg-white/5 border border-white/10 rounded-2xl text-center space-y-2">
+          <div class="text-2xl font-black text-purple-400">Motion</div>
+          <p class="text-[11px] text-slate-400 font-semibold">GPU-Accelerated Animations</p>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-2">
+        <h3 class="text-base font-black text-white">State Persistence & Open Data</h3>
+        <p class="text-xs text-slate-300 leading-relaxed font-medium">
+          Zero-backend dependency: Data persists client-side via LocalStorage context hooks (`useIssues`), enabling zero-latency instant updates and 100% serverless static deployment.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: CONCLUSION -->
+  <div class="slide" id="slide-5">
+    <div class="max-w-5xl mx-auto text-center space-y-8">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-black uppercase tracking-widest">
+        <span>READY FOR LIVE DEMO</span>
+      </div>
+      <h2 class="text-5xl sm:text-6xl font-black text-white">Let's Make Indian Roads Gaddhamukt!</h2>
+      <p class="text-lg text-slate-300 font-semibold max-w-2xl mx-auto">
+        Check out the live map, track sample tickets, and generate legal RTI dossiers!
+      </p>
+
+      <div class="pt-6 flex justify-center items-center gap-4">
+        <a href="https://github.com/Sushantcod/guddhamukt" target="_blank" class="px-8 py-4 bg-[#F97316] text-white font-black rounded-2xl text-base shadow-xl">
+          GitHub Repository 🚀
+        </a>
+      </div>
+      <p class="text-xs text-slate-500 font-bold pt-4">Crafted with ❤️ by Sushant Chand</p>
+    </div>
+  </div>
+
+  <!-- CONTROLS FOOTER -->
+  <div class="fixed bottom-6 inset-x-0 max-w-5xl mx-auto px-8 flex items-center justify-between text-xs text-slate-400 font-bold">
+    <div>Use <kbd class="px-2 py-1 bg-white/10 rounded text-white">←</kbd> and <kbd class="px-2 py-1 bg-white/10 rounded text-white">→</kbd> Arrow Keys to Navigate</div>
+    <div id="slide-num">Slide 1 of 5</div>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 5;
+
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      document.getElementById(`slide-${index}`).classList.add('active');
+      
+      currentSlide = index;
+      document.getElementById('slide-num').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        showSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft') {
+        showSlide(currentSlide - 1);
+      }
+    });
+  </script>
+
+</body>
+</html>
