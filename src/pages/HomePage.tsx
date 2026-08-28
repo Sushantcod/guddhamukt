@@ -24,6 +24,8 @@ import { IssueCard } from '../components/issue/IssueCard';
 import { EmptyState } from '../components/common/EmptyState';
 import { GlobeComponent } from '../components/ui/GlobeComponent';
 
+import { TypingText } from '../components/common/TypingText';
+
 export const HomePage: React.FC = () => {
   const { issues, confirmIssue, userConfirmedIds, getMetrics } = useIssues();
   const [currentMode, setCurrentMode] = useState<CivicMode>('urban');
@@ -84,7 +86,17 @@ export const HomePage: React.FC = () => {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-['Plus_Jakarta_Sans',sans-serif]">
               Report Potholes. <br />
               <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 bg-clip-text text-transparent">
-                Fix Roads. Hold Engineers Accountable.
+                <TypingText
+                  words={[
+                    'Fix Roads. Hold Engineers Accountable.',
+                    'Track 72-Hour Statutory Repair SLAs.',
+                    'Generate Legal RTI & CMO Escalations.',
+                    'Citizen Verification & Quality Sign-Off.',
+                  ]}
+                  typingSpeed={60}
+                  deletingSpeed={30}
+                  delayBetween={2500}
+                />
               </span>
             </h1>
 
