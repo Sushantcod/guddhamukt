@@ -48,9 +48,9 @@ export const TypingText: React.FC<TypingTextProps> = ({
   }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, delayBetween]);
 
   return (
-    <span className={`inline-flex items-center text-[#F97316] ${className}`}>
+    <span className={`inline text-[#F97316] ${className}`}>
       <span className="text-[#F97316] font-black">{currentText}</span>
-      <span className="ml-1 animate-pulse font-extrabold text-[#F97316]">|</span>
+      <span className="ml-0.5 inline-block animate-pulse font-extrabold text-[#F97316]">|</span>
     </span>
   );
 };
