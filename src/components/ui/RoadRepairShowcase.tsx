@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, HardHat, CheckCircle2, AlertTriangle, Clock, ChevronRight, Play, Camera, MapPin } from 'lucide-react';
+import { ShieldCheck, HardHat, CheckCircle2, AlertTriangle, Clock, ChevronRight, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface RepairStage {
@@ -101,9 +101,20 @@ export const RoadRepairShowcase: React.FC = () => {
             alt="After Pothole Repair"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute top-4 right-4 bg-emerald-600/90 text-white text-xs font-black px-3 py-1 rounded-full shadow-lg backdrop-blur-sm border border-emerald-300/40 flex items-center gap-1.5 z-10">
-            <CheckCircle2 className="w-4 h-4 text-emerald-200" />
+
+          {/* Fixed AFTER Badge (Top Right) */}
+          <div className="absolute top-4 right-4 bg-emerald-600/90 text-white text-xs font-extrabold px-3 py-1 rounded-full shadow-lg backdrop-blur-sm border border-emerald-300/40 flex items-center gap-1.5 z-20 whitespace-nowrap pointer-events-none">
+            <CheckCircle2 className="w-4 h-4 text-emerald-200 shrink-0" />
             <span>AFTER: Verified Fixed Road</span>
+          </div>
+
+          {/* Fixed BEFORE Badge (Top Left) */}
+          <div 
+            className="absolute top-4 left-4 bg-red-600/90 text-white text-xs font-extrabold px-3 py-1 rounded-full shadow-lg backdrop-blur-sm border border-red-300/40 flex items-center gap-1.5 z-20 whitespace-nowrap pointer-events-none transition-opacity duration-200"
+            style={{ opacity: sliderPos > 10 ? 1 : 0 }}
+          >
+            <AlertTriangle className="w-4 h-4 text-red-200 shrink-0" />
+            <span>BEFORE: Dangerous Road Pothole</span>
           </div>
 
           {/* BEFORE IMAGE (Top Layer Clipped by Slider) */}
@@ -115,12 +126,8 @@ export const RoadRepairShowcase: React.FC = () => {
               src="/demo-images/pothole-1.jpg"
               alt="Before Pothole Repair"
               className="absolute inset-0 w-full h-full object-cover max-w-none"
-              style={{ width: `${10000 / sliderPos}%` }}
+              style={{ width: `${10000 / Math.max(sliderPos, 1)}%` }}
             />
-            <div className="absolute top-4 left-4 bg-red-600/90 text-white text-xs font-black px-3 py-1 rounded-full shadow-lg backdrop-blur-sm border border-red-300/40 flex items-center gap-1.5 z-10">
-              <AlertTriangle className="w-4 h-4 text-red-200" />
-              <span>BEFORE: Dangerous Road Pothole</span>
-            </div>
           </div>
 
           {/* DRAGGABLE SLIDER HANDLE */}
@@ -133,7 +140,7 @@ export const RoadRepairShowcase: React.FC = () => {
             </div>
           </div>
 
-          {/* Hidden Range Input for Touch/Mouse Slider Dragging */}
+          {/* Range Input for Dragging */}
           <input
             type="range"
             min="0"
