@@ -153,31 +153,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 npm run build
 ```
 
----
-
-## 📤 Step-by-Step GitHub Upload Guide
-
-To upload this project to your GitHub account:
-
-1. **Create a new repository on GitHub**:
-   - Go to [https://github.com/new](https://github.com/new)
-   - Repository name: `guddhamukt` (or `civic-issue-reporter`)
-   - Description: `Problem 31 - Pothole/Civic Issue Reporter with Map View | Team Single Thread`
-   - Set to **Public** and do NOT check "Add a README file" (we already have one).
-   - Click **Create repository**.
-
-2. **Push your local code via Terminal**:
-   ```bash
-   # Inside the /guddhamukt directory
-   git init
-   git add .
-   git commit -m "feat: Civic Tech Problem 31 - Pothole & Civic Issue Accountability Platform"
-   git branch -M main
-   git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/guddhamukt.git
-   git push -u origin main
-   ```
-
----
 
 ## 👥 Team Details
 
