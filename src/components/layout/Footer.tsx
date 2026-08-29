@@ -117,8 +117,17 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Copyright & Credit Bar */}
-        <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium">
-          <p>© 2025 Gaddhamukt Civic Portal. All rights reserved.</p>
+        <div className="pt-6 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-medium">
+          <div className="flex flex-wrap items-center gap-2">
+            <p>© 2025 Gaddhamukt Civic Portal.</p>
+            <span className="text-slate-600 hidden sm:inline">•</span>
+            <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-bold">
+              CIVIC TECH — Problem #31
+            </span>
+            <span className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[11px] font-bold">
+              Team Single Thread (ID: SD307)
+            </span>
+          </div>
           <div className="flex items-center gap-1.5 text-slate-300 font-medium">
             <span>Crafted with</span>
             <motion.span
@@ -128,7 +137,7 @@ export const Footer: React.FC = () => {
             >
               <Heart className="w-4 h-4 text-red-500 fill-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
             </motion.span>
-            <span>by <strong className="text-white font-extrabold text-xs tracking-wide">Sushant Chand</strong> for safer roads</span>
+            <span>by <strong className="text-white font-extrabold text-xs tracking-wide">Sushant Chand (ID: SDP768)</strong> for safer roads</span>
           </div>
         </div>
 

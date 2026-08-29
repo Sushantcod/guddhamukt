@@ -115,7 +115,8 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     landmark: 'Near Chaheru Level Crossing',
     latitude: 31.2612,
     longitude: 75.6980,
-    photoUrl: '/demo-images/repair-proof.jpg',
+    photoUrl: '/demo-images/rural-mud-road.jpg',
+    repairProofUrl: '/demo-images/repair-proof.jpg',
     confirmationCount: 22,
     status: 'Resolved',
     simulatedRouteStatus: 'Acknowledged',
@@ -167,7 +168,8 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     landmark: 'Opposite Shell Fuel Station, Outer Ring Road',
     latitude: 12.9279,
     longitude: 77.6801,
-    photoUrl: '/demo-images/pothole-1.jpg',
+    photoUrl:
+      'https://images.unsplash.com/photo-1599818818816-563b7156942c?auto=format&fit=crop&w=1200&q=80',
     repairProofUrl: undefined,
     confirmationCount: 42,
     status: 'Inspection Scheduled',
@@ -255,7 +257,8 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     landmark: 'Near Bus Bay 14',
     latitude: 12.9282,
     longitude: 77.6803,
-    photoUrl: '/demo-images/pothole-2.jpg',
+    photoUrl:
+      'https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 18,
     status: 'Acknowledged',
     simulatedRouteStatus: 'Simulated route',
@@ -369,8 +372,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     landmark: 'Adjacent to BMTC Bus Depot',
     latitude: 12.9842,
     longitude: 77.7499,
-    photoUrl:
-      'https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1200&q=80',
+    photoUrl: '/demo-images/waterlogged-street.jpg',
     confirmationCount: 56,
     status: 'Routed',
     simulatedRouteStatus: 'Escalation packet ready',
@@ -562,7 +564,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 12.9738,
     longitude: 77.6414,
     photoUrl:
-      'https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1588615419958-417161972629?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 7,
     status: 'Reported',
     simulatedRouteStatus: 'Prepared',
@@ -602,7 +604,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 12.9868,
     longitude: 77.7381,
     photoUrl:
-      'https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 22,
     status: 'Repair In Progress',
     simulatedRouteStatus: 'Acknowledged',
@@ -722,7 +724,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 12.9912,
     longitude: 77.7554,
     photoUrl:
-      'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 26,
     status: 'Acknowledged',
     simulatedRouteStatus: 'Simulated route',
@@ -779,7 +781,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 22.0812,
     longitude: 82.1425,
     photoUrl:
-      'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 38,
     status: 'Routed',
     simulatedRouteStatus: 'Overdue',
@@ -836,7 +838,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 22.0785,
     longitude: 82.1398,
     photoUrl:
-      'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 24,
     status: 'Acknowledged',
     simulatedRouteStatus: 'Simulated route',
@@ -892,7 +894,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 22.0787,
     longitude: 82.1401,
     photoUrl:
-      'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 11,
     status: 'Reported',
     simulatedRouteStatus: 'Prepared',
@@ -932,7 +934,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 22.0741,
     longitude: 82.1468,
     photoUrl:
-      'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 45,
     status: 'Inspection Scheduled',
     simulatedRouteStatus: 'Acknowledged',
@@ -997,7 +999,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 22.0804,
     longitude: 82.1385,
     photoUrl:
-      'https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 19,
     status: 'Repair In Progress',
     simulatedRouteStatus: 'Acknowledged',
@@ -1053,9 +1055,8 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 22.0831,
     longitude: 82.1442,
     photoUrl:
-      'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=1200&q=80',
-    repairProofUrl:
-      'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=1200&q=80',
+    repairProofUrl: '/demo-images/repair-proof.jpg',
     confirmationCount: 31,
     status: 'Citizen Verified',
     simulatedRouteStatus: 'Acknowledged',
@@ -1132,7 +1133,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 22.0762,
     longitude: 82.1419,
     photoUrl:
-      'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1508873696983-2df5703cc2ab?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 15,
     status: 'Acknowledged',
     simulatedRouteStatus: 'Simulated route',
@@ -1188,7 +1189,7 @@ export const INITIAL_MOCK_ISSUES: Issue[] = [
     latitude: 22.0855,
     longitude: 82.1362,
     photoUrl:
-      'https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
     confirmationCount: 16,
     status: 'Reported',
     simulatedRouteStatus: 'Prepared',

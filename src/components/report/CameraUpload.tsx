@@ -8,24 +8,24 @@ interface CameraUploadProps {
 
 const SAMPLE_ROAD_PHOTOS = [
   {
-    title: 'Crater Pothole',
-    url: 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=1200&q=80',
+    title: 'GT Road Pothole',
+    url: '/demo-images/pothole-1.jpg',
     type: 'Pothole',
   },
   {
-    title: 'Asphalt Trench',
-    url: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?auto=format&fit=crop&w=1200&q=80',
+    title: 'Paver Trench',
+    url: '/demo-images/pothole-2.jpg',
+    type: 'Road Damage',
+  },
+  {
+    title: 'Rural Mud Road',
+    url: '/demo-images/rural-mud-road.jpg',
     type: 'Road Damage',
   },
   {
     title: 'Clogged Waterlogging',
-    url: 'https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1200&q=80',
+    url: '/demo-images/waterlogged-street.jpg',
     type: 'Waterlogging',
-  },
-  {
-    title: 'Broken Streetlight',
-    url: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80',
-    type: 'Streetlight',
   },
 ];
 
